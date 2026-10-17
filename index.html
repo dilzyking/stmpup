@@ -1,209 +1,150 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STMPUP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Live Stream</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZXC121E6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-SMZXC121E6');
+</script>
 <style>
-body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-    background:#e9eef3;
-    display:flex;
-    justify-content:center;
-    padding:12px;
+html,body{
+margin:0;
+padding:0;
+background:#000;
+overflow:hidden;
+width:100%;
+height:100%;
 }
-.container{
-    width:100%;
-    max-width:480px;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
+
+#main-iframe{
+width:100%;
+height:100%;
+border:none;
+display:block;
+position:absolute;
+top:0;
+left:0;
 }
-.card{
-    background:linear-gradient(135deg,#0d6efd,#0a58ca);
-    border-radius:14px;
-    padding:18px;
-    color:#fff;
-    text-align:center;
-    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+
+.telegram-btn{
+position:absolute;
+top:15px;
+left:15px;
+z-index:9999;
+display:flex;
+align-items:center;
+gap:12px;
+background:linear-gradient(135deg,#1e88e5,#1565c0);
+padding:10px 16px;
+border-radius:14px;
+text-decoration:none;
+color:#fff;
+font-size:16px;
+font-weight:600;
+font-family:Arial,sans-serif;
+box-shadow:0 6px 18px rgba(0,0,0,0.5);
 }
-.header{
-    font-size:22px;
-    font-weight:700;
+
+.telegram-icon{
+width:34px;
+height:34px;
+background:rgba(255,255,255,0.15);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+border:2px solid #fff;
 }
-.video-wrapper{
-    background:#000;
-    border-radius:14px;
-    overflow:hidden;
-    position:relative;
-    padding-top:56.25%;
-    box-shadow: 0 0 0 3px #0d6efd;
-    margin-bottom: 30px;
+
+.telegram-icon svg{
+width:18px;
+height:18px;
+fill:#fff;
 }
-.video-wrapper iframe{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    border:0;
-}
-.error-box{
-    display:none;
-    background:#ff4d4d;
-    color:#fff;
-    padding:14px;
-    border-radius:10px;
-    font-weight:500;
-}
-.community h3{
-    margin:0 0 14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-}
-.buttons{
-    display:flex;
-    gap:12px;
-    justify-content:center;
-}
-.btn{
-    flex:1;
-    background:transparent;
-    border:2px solid #fff;
-    border-radius:30px;
-    padding:10px;
-    color:#fff;
-    font-weight:600;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    transition:.3s;
-}
-.btn:hover{
-    background:#fff;
-    color:#0d6efd;
-}
-.btn svg{
-    width:18px;
-    height:18px;
-    fill:currentColor;
-}
-.share-btn{
-    background:#fff;
-    color:#0d6efd;
-    border:none;
-    border-radius:10px;
-    padding:12px;
-    font-weight:700;
-    cursor:pointer;
-    width:100%;
+
+.error-msg{
+color:white;
+text-align:center;
+font-family:sans-serif;
+margin-top:20px;
+position:absolute;
+width:100%;
+top:50%;
+transform:translateY(-50%);
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<a href="https://t.me/+33pt3bEXIsUzYTI1" target="_blank" class="telegram-btn">
 
-<div class="card header">
-ELITExCORE
-</div>
-
-<div class="video-wrapper">
-    <div id="player-container"></div>
-</div>
-
-<div id="errorBox" class="error-box">
-Invalid or unavailable stream ID.
-</div>
-
-<div class="card community">
-<h3>
-Join our community for live updates!
-</h3>
-
-<div class="buttons">
-<a href="https://t.me/+o-cwnFy-nRAzMWY1" class="btn">
+<div class="telegram-icon">
 <svg viewBox="0 0 24 24">
-<path d="M9.04 15.47l-.4 5.65c.57 0 .82-.25 1.13-.55l2.72-2.6 5.64 4.13c1.03.57 1.76.27 2.04-.95l3.7-17.37c.36-1.65-.6-2.3-1.6-1.92L1.66 9.74c-1.58.61-1.55 1.5-.27 1.9l5.58 1.74L19.46 5.6c.58-.36 1.1-.16.67.2"/>
+<path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86.001-.001c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215"/>
 </svg>
-Telegram
+</div>
+
+<span>Join @ELITEXCORE</span>
+
 </a>
-</div>
-</div>
 
-<div class="card">
-<h3>Copy Link & Open In Chrome Browser Only</h3>
-<button class="share-btn" id="shareBtn">Share This Page Link</button>
-</div>
-
-</div>
-
+<iframe id="main-iframe" allowfullscreen allow="encrypted-media; fullscreen; autoplay"></iframe>
 <script>
+window.addEventListener('DOMContentLoaded',()=>{
 
-document.addEventListener("DOMContentLoaded",function(){
+const join = confirm("Join Our Telegram Channel");
 
-// DEFAULT POPUP
-if(confirm("Join For More Links")){
-    window.location.href="https://t.me/+o-cwnFy-nRAzMWY1";
-    return;
+if(join){
+location.href = "https://t.me/+33pt3bEXIsUzYTI1";
 }
 
-// GET ID PARAM
-const params=new URLSearchParams(window.location.search);
-const id=params.get("id");
+const urlParams=new URLSearchParams(window.location.search);
+const id=urlParams.get('id');
+const iframe=document.getElementById('main-iframe');
 
-const playerContainer=document.getElementById("player-container");
-const errorBox=document.getElementById("errorBox");
-
-if(!id){
-    errorBox.style.display="block";
-    return;
-}
-
-// FETCH JSON
-fetch("https://allrounderid2.pages.dev/id.json")
+if(id){
+fetch('https://allrounder2-0.pages.dev/id.json')
 .then(res=>res.json())
 .then(data=>{
+const targetData=data.iframes.find(item=>item.id===id);
+if(targetData && targetData.iframeSrc){
+iframe.src=targetData.iframeSrc;
 
-if(!data.iframes || !Array.isArray(data.iframes)){
-    errorBox.style.display="block";
-    return;
+if(targetData.hit){
+fetch(targetData.hit).catch(()=>{});
 }
 
-const match=data.iframes.find(item=>item.id===id);
-
-if(match && match.iframeSrc){
-    playerContainer.innerHTML=`
-        <iframe 
-            src="${match.iframeSrc}" 
-            allow="encrypted-media; autoplay" 
-            allowfullscreen>
-        </iframe>
-    `;
 }else{
-    errorBox.style.display="block";
+showError("Stream not found");
 }
-
 })
 .catch(()=>{
-errorBox.style.display="block";
+showError("Error loading data");
 });
+}else{
+showError("No ID provided");
+}
 
-document.getElementById("shareBtn").onclick=function(){
-navigator.clipboard.writeText(window.location.href)
-.then(()=>alert("Link Copied"));
-};
+function showError(msg){
+const h2=document.createElement('h2');
+h2.className='error-msg';
+h2.innerText=msg;
+document.body.appendChild(h2);
+iframe.style.display='none';
+const badge=document.querySelector('.telegram-btn');
+if(badge) badge.style.display='none';
+}
 
 });
-
 </script>
-
 </body>
 </html>
